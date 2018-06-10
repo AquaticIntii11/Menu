@@ -1,5 +1,4 @@
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -93,7 +92,7 @@ public class Main {
         //
 
         Menu newObj = new Menu();
-        newObj.fillTable(3);
+        //newObj.fillTable(3);
 
         //Sets
         Set<String> zbior = new HashSet<String>();
@@ -102,8 +101,38 @@ public class Main {
         zbior.add("first");
         zbior.add("second");
         zbior.add("1");
+        //for each loop
         for (String ciagZnakow : zbior) {
-            System.out.println(ciagZnakow);
+            //System.out.println(ciagZnakow);
+        }
+
+
+        //Lists
+        List<String> zbiorLista = new ArrayList<String>();
+        zbiorLista.add("first");
+        zbiorLista.add("second");
+        zbiorLista.add("first");
+        zbiorLista.add("second");
+        zbiorLista.add("1");
+        //for each loop
+        for (String ciagZnakow : zbiorLista) {
+            //System.out.println(ciagZnakow);
+        }
+
+        //Maps
+        Map<Integer, String> mapa = new HashMap<Integer, String>();
+        mapa.put( 1, "first");
+        mapa.put(2, "second");
+        mapa.put(3, "first");
+        mapa.put(3, "fourth");
+        mapa.put(4, "first");
+        System.out.println(mapa.values());
+        System.out.println(mapa.keySet());
+
+        Set<Integer> keys = new HashSet<Integer>();
+        keys = mapa.keySet();
+        for (Integer key: keys){
+            System.out.println(key + ": " + mapa.get(key));
         }
 
     }

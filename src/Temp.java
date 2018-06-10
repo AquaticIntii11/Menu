@@ -1,10 +1,10 @@
 public class Temp {
-    public String namex;
-    public int maxSpeedx;
-    private int currentSpeedx;
+    public String name;
+    public int maxSpeed;
+    private int currentSpeed;
 
     public void startEngine() {
-        this.currentSpeedx = 0;
+        this.currentSpeed = 0;
         System.out.println("Engine started");
     }
 }

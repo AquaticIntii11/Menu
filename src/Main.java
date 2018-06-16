@@ -3,137 +3,48 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
 
-        /*
-        System.out.println("Hello");
-        System.out.print("hey");
-        System.out.println("Hi");
-
-        int a = 10, b = 5, sum = a + b;
-
-        System.out.println(sum);
-        b = 10;
-        sum = a + b;
-        System.out.println(sum);
-        b = 13;
-        sum = a + b;
-        System.out.println(sum);
-        b = 17;
-        sum = a + b + 5;
-        System.out.println(sum);
-
-        Menu myMenu = new Menu();
-        Menu mySecondMenu = new Menu(55);
-        Menu myOtherMenu = new Menu ("here some text");
-
-        System.out.println("Number: " + myMenu.number + " Text: " + myMenu.text);
-
-        myMenu.number = 7;
-        System.out.println(myMenu.number);
-        System.out.println("Number with provided arg: " + mySecondMenu.number);
-        System.out.println("Text of myOtherMenu: " + myOtherMenu.text);
-        */
-        /*
-        Car car = new Car();
-        car.name = "Opel";
-        car.maxSpeed = 200;
-        System.out.println(car.getMaxSpeed());
-        car.increaseSpeed(10);
-        System.out.println(car.getCurrentSpeed());
-        car.driveWithSpeed(150);
-        System.out.println(car.getCurrentSpeed());
-        */
-
-        //comparing strings
-        /*
-        String s1 = "INFOShare";
-        String s2 = new String ("infoShare");
-        System.out.println(s2.equals(s1));
-        System.out.println(s1.compareTo(s2));
-        System.out.println(s2.compareTo(s1));
-        System.out.println(s2.compareToIgnoreCase(s1));
-        */
-
-        //stringBuilder
-        /*
-        String s3 = "info" + "Share" + "Acaddemy";
-
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("info");
-        stringBuilder.append("Share");
-        stringBuilder.append("Academy");
-
-        String s4 = stringBuilder.toString();
-        String s5 = stringBuilder.reverse().toString();
-        System.out.println("Result from stringBuilder: " + s4);
-        System.out.println("Reversed string from stringBuilder: " + s5);
-        */
-
-        //Methods
-        /*
-        String s = "string:separate:by:colons";
-        String[] sArray = s.split(":");
-
-        System.out.println("Size of a string table: " + sArray.length);
-        for (int i =0; i< sArray.length; i++){
-            System.out.println("El " + i + ": " + sArray[i]);
-            */
-
-        //Tables
-        /*
-        int[] tab = new int[3];
-        int[] tab2 = {1,2,3};
-
-        int num = tab[1];
-        int num2 = tab2[1]
-
-        System.out.println(num1);
-        System.out.println(tab2[1]);*/
-
-        //
-
-        Menu newObj = new Menu();
-        //newObj.fillTable(3);
-
-        //Sets
-        Set<String> zbior = new HashSet<String>();
-        zbior.add("first");
-        zbior.add("second");
-        zbior.add("first");
-        zbior.add("second");
-        zbior.add("1");
-        //for each loop
-        for (String ciagZnakow : zbior) {
-            //System.out.println(ciagZnakow);
+        Scanner in = new Scanner(System.in);
+        //get a number of users
+        int nameNumber = 0;
+        boolean status = true;
+        boolean correctInput = false;
+        while(status) {
+            System.out.println("Provide number of users");
+            String input = in.nextLine();
+            correctInput = IntValidator.ValidateInt(input);
+            if (correctInput){
+                status = false;
+                nameNumber = Integer.parseInt(input);
+            }
+            else {
+                System.out.println("Number of user should be integer :<");
+            }
         }
 
+        Users users = new Users(nameNumber);
 
-        //Lists
-        List<String> zbiorLista = new ArrayList<String>();
-        zbiorLista.add("first");
-        zbiorLista.add("second");
-        zbiorLista.add("first");
-        zbiorLista.add("second");
-        zbiorLista.add("1");
-        //for each loop
-        for (String ciagZnakow : zbiorLista) {
-            //System.out.println(ciagZnakow);
+        String shortestName = "";
+        String longestName = "";
+        //get users
+        for(int i=0; i<nameNumber; i++){
+            System.out.println(String.format("Provide %d user:", i+1));
+            String tempString = in.nextLine();
+            if (tempString.length() < shortestName.length() || i == 0){
+                shortestName = tempString;
+            }
+            if (tempString.length() > longestName.length()){
+                longestName = tempString;
+            }
+            users.addUsers(tempString, i);
+
         }
+        System.out.println("Shortest name: "+shortestName);
+        System.out.println("Longest name: "+longestName);
+        users.printOccurences();
+        users.printLetterOccurence();
 
-        //Maps
-        Map<Integer, String> mapa = new HashMap<Integer, String>();
-        mapa.put( 1, "first");
-        mapa.put(2, "second");
-        mapa.put(3, "first");
-        mapa.put(3, "fourth");
-        mapa.put(4, "first");
-        System.out.println(mapa.values());
-        System.out.println(mapa.keySet());
 
-        Set<Integer> keys = new HashSet<Integer>();
-        keys = mapa.keySet();
-        for (Integer key: keys){
-            System.out.println(key + ": " + mapa.get(key));
-        }
+
 
     }
 }
